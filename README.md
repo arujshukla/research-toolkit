@@ -13,6 +13,7 @@ This repository is meant to be a practical toolbox: things you (and myself) can 
 ## Current contents
 
 - `templates/beamer/`: a warm-toned Beamer template built on `metropolis`
+- `templates/latex/`: templates for a full paper and a short note document
 
 ## Getting started
 
