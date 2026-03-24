@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+
+\newif\ifdraft
+\draftfalse
+% Switch to \drafttrue while actively drafting to enable todos and coauthor notes.
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{sourceserifpro}
+\usepackage[scale=0.92]{sourcesanspro}
+\usepackage[scale=0.9]{sourcecodepro}
+\usepackage{newpxmath}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{dcolumn}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pdflscape}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage[multiple]{footmisc}
+\usepackage{etoolbox}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+\setlength{\marginparwidth}{2cm}
+\ifdraft
+  \usepackage[textsize=scriptsize]{todonotes}
+\else
+  \usepackage[disable]{todonotes}
+\fi
+
+\geometry{margin=1in}
+\ifdraft
+  \onehalfspacing
+\else
+  \setstretch{1.2}
+\fi
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\captionsetup{font=footnotesize}
+\setlist[itemize]{topsep=0.4em,itemsep=0.2em}
+\setlist[enumerate]{topsep=0.4em,itemsep=0.2em}
+
+\definecolor{LinkSlate}{HTML}{2B5C92}
+\definecolor{ArujNote}{HTML}{B23A48}
+\definecolor{CoauthorNote}{HTML}{5C4D7D}
+\definecolor{ReplyTeal}{HTML}{1F6F78}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=LinkSlate,
+  citecolor=LinkSlate,
+  urlcolor=LinkSlate
+}
+
+% Use a clean sans-serif family in tables for better legibility.
+\AtBeginEnvironment{tabular}{\sffamily\small}
+\AtBeginEnvironment{tabularx}{\sffamily\small}
+\AtBeginEnvironment{longtable}{\sffamily\small}
+
+% Drafting helpers
+\newcommand{\todoinline}[1]{\todo[inline,color=LinkSlate!12]{#1}}
+\newcommand{\AR}[1]{\todo[color=ArujNote!18,linecolor=ArujNote!85]{Aruj: #1}}
+\newcommand{\ARinline}[1]{\todo[inline,color=ArujNote!12]{Aruj: #1}}
+\newcommand{\CO}[1]{\todo[color=CoauthorNote!18,linecolor=CoauthorNote!85]{Coauthor: #1}}
+\newcommand{\COinline}[1]{\todo[inline,color=CoauthorNote!12]{Coauthor: #1}}
+\newcommand{\reply}[1]{\textcolor{ReplyTeal}{#1}}
+
+\newcommand{\quotes}[1]{``#1''}
+\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\speccell}[2][l]{\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+\newcommand\T{\rule{0pt}{2.6ex}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\sym}[1]{\ifmmode^{#1}\else\(^{#1}\)\fi}
+
+\makeatletter
+\g@addto@macro\@floatboxreset\centering
+\makeatother

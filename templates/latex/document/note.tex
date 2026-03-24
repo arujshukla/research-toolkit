@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{sourceserifpro}
+\usepackage[scale=0.92]{sourcesanspro}
+\usepackage[scale=0.9]{sourcecodepro}
+\usepackage{newpxmath}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+\geometry{margin=1in}
+\setstretch{1.15}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\captionsetup{font=footnotesize}
+\setlist[itemize]{topsep=0.35em,itemsep=0.15em}
+\setlist[enumerate]{topsep=0.35em,itemsep=0.15em}
+
+\definecolor{LinkSlate}{HTML}{2B5C92}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=LinkSlate,
+  citecolor=LinkSlate,
+  urlcolor=LinkSlate
+}
+
+% Use a clean sans-serif family in tables for better legibility.
+\AtBeginEnvironment{tabular}{\sffamily\small}
+\AtBeginEnvironment{tabularx}{\sffamily\small}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\title{Short Note Title}
+\author{Author Name\thanks{Affiliation. Email: \href{mailto:author@example.com}{author@example.com}.}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This template is intended for short empirical notes, memos, and compact research documents. It keeps the structure flat while still including the most common elements used in quantitative social science writing.
+\end{abstract}
+
+\section{Setup and Motivation}
+
+Short notes often need just enough structure to state a question, show a core specification, present one table or figure, and summarize the main takeaway. This template is designed for exactly that use case. For general empirical framing, see \citet{angrist2001}.
+
+A concise note can still contain the classic ingredients of a longer paper: a motivating setup, a regression equation, a key table, and a figure or event-study style visual. It should also remain easy to adapt when tables are generated externally in statistical software.\footnote{In many workflows, tables are exported from Stata, R, or Python and then included via `\\input{...}`.}
+
+\section{Empirical Specification}
+
+A standard reduced-form estimating equation might be:
+\begin{align}
+    y_{it} = \alpha + \beta \text{Treatment}_{it} + \gamma_i + \delta_t + \varepsilon_{it}.
+\end{align}
+
+Here, $\gamma_i$ and $\delta_t$ denote unit and time fixed effects, respectively. In a short note, the main job of the equation is to anchor interpretation rather than to catalog every robustness choice.
+
+\paragraph{Proposition.} If treatment is as-good-as-random conditional on fixed effects and controls, the coefficient $\beta$ identifies the average treatment effect within the estimation sample.
+
+\section{Table and Figure Examples}
+
+% If you usually export tables into a separate folder, replace the inline table below with something like:
+% \input{tables/example-regression-table.tex}
+% and adjust the relative path depending on where this note lives when you compile it.
+
+\begin{table}[H]
+  \centering
+  \begin{threeparttable}
+    \caption{Example Regression-Style Table}
+    \begin{tabular}{lcc}
+      \toprule
+      Outcome & Baseline & With Controls \\
+      \midrule
+      Treatment effect & $0.082^{***}$ & $0.067^{**}$ \\
+      & (0.021) & (0.027) \\
+      Mean of dep. var. & 0.44 & 0.44 \\
+      Observations & 2{,}480 & 2{,}480 \\
+      \bottomrule
+    \end{tabular}
+    \begin{tablenotes}[flushleft]
+      \footnotesize
+      \item Notes: Replace this with your exported table if you have one. Stars are illustrative only.
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox[c][2.2in][c]{0.82\linewidth}{\centering Replace with a coefficient plot, event-study figure, binned scatter, or conceptual diagram.}}
+  \caption{Example Figure Placeholder}
+\end{figure}
+
+\section{Discussion}
+
+A short note usually benefits from a direct interpretation paragraph. For example, one could read the estimate as evidence that salience, institutions, or incentives meaningfully shape measured outcomes in the spirit of \citet{chetty2009}. The purpose here is not to overbuild the document, but to leave the next note one copy away from being usable.
+
+A simple checklist before sharing a note:
+\begin{itemize}
+  \item Make sure the title and abstract state the object of interest clearly.
+  \item Keep one main table or figure in the text when possible.
+  \item Move extra detail to footnotes or an appendix only if truly needed.
+\end{itemize}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

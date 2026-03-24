@@ -1,0 +1,32 @@
+\input{preamble}
+
+\title{Paper Title}
+\author{Author Name\thanks{Affiliation. Email: \href{mailto:author@example.com}{author@example.com}.}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This template is designed for academic papers that benefit from a modular structure. The main file stays lightweight, the preamble is centralized, and each major section can be drafted independently in its own chapter file.
+\end{abstract}
+
+\clearpage
+
+\input{chapters/1_Introduction.tex}
+\input{chapters/2_Background.tex}
+\input{chapters/3_Data.tex}
+\input{chapters/4_Empirics.tex}
+\input{chapters/5_Results.tex}
+\input{chapters/6_Conclusion.tex}
+
+\clearpage
+\bibliographystyle{plainnat}
+\bibliography{bibtex/biblio}
+
+\clearpage
+\appendix
+\input{chapters/7_Appendix.tex}
+
+\end{document}
