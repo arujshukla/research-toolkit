@@ -1,0 +1,118 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{arujbeamer}[2026/03/24 Reusable Beamer template]
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{AlegreyaSans}
+\RequirePackage{Alegreya}
+\RequirePackage{appendixnumberbeamer}
+\RequirePackage{booktabs}
+\RequirePackage{etoolbox}
+\RequirePackage{graphicx}
+\RequirePackage{hyperref}
+\RequirePackage{mathtools}
+\RequirePackage{tabularx}
+\RequirePackage{xcolor}
+
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\metroset{block=fill}
+
+% Core palette
+\definecolor{ArujCrimson}{HTML}{8C2F39}
+\definecolor{ArujPlum}{HTML}{5C374C}
+\definecolor{ArujGold}{HTML}{B8893B}
+\definecolor{ArujInk}{HTML}{2F2430}
+\definecolor{ArujGray}{HTML}{6D5F5E}
+\definecolor{ArujPaper}{HTML}{F8F2E8}
+\definecolor{ArujSand}{HTML}{EFE3CF}
+\definecolor{ArujWhite}{HTML}{FFFFFF}
+\definecolor{ArujSuccess}{HTML}{3D7A52}
+\definecolor{ArujAlert}{HTML}{A23B2A}
+
+% Theme colors
+\setbeamercolor{normal text}{fg=ArujInk,bg=ArujPaper}
+\setbeamercolor{background canvas}{bg=ArujPaper}
+\setbeamercolor{alerted text}{fg=ArujAlert}
+\setbeamercolor{palette primary}{fg=ArujWhite,bg=ArujCrimson}
+\setbeamercolor{palette secondary}{fg=ArujWhite,bg=ArujPlum}
+\setbeamercolor{frametitle}{fg=ArujCrimson,bg=ArujPaper}
+\setbeamercolor{title}{fg=ArujCrimson}
+\setbeamercolor{subtitle}{fg=ArujGray}
+\setbeamercolor{title separator}{fg=ArujGold}
+\setbeamercolor{progress bar}{fg=ArujCrimson,bg=ArujSand}
+\setbeamercolor{section title}{fg=ArujInk,bg=ArujSand}
+\setbeamercolor{block title}{fg=ArujWhite,bg=ArujCrimson}
+\setbeamercolor{block body}{fg=ArujInk,bg=ArujSand}
+\setbeamercolor{block title alerted}{fg=ArujWhite,bg=ArujAlert}
+\setbeamercolor{block body alerted}{fg=ArujInk,bg=ArujSand}
+\setbeamercolor{block title example}{fg=ArujWhite,bg=ArujSuccess}
+\setbeamercolor{block body example}{fg=ArujInk,bg=ArujSand}
+\setbeamercolor{footline}{fg=ArujGray,bg=ArujPaper}
+\setbeamercolor{itemize item}{fg=ArujCrimson}
+\setbeamercolor{itemize subitem}{fg=ArujPlum}
+\setbeamercolor{enumerate item}{fg=ArujCrimson}
+
+% Typography
+\renewcommand{\familydefault}{\sfdefault}
+\setbeamerfont{title}{series=\bfseries,size=\Large}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+\setbeamerfont{section title}{series=\bfseries,size=\LARGE}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{date}{size=\small}
+
+% Layout tuning
+\setlength{\parskip}{0.4em}
+\setlength{\leftmargini}{1.2em}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\color{ArujCrimson}\small$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{ArujPlum}\small$\blacktriangleright$}
+\setbeamertemplate{itemize subsubitem}{\color{ArujGray}\small$\bullet$}
+
+% Cleaner captions and footnotes
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{footnote}{%
+  \parindent 0em\noindent%
+  \raggedright%
+  \usebeamerfont{footnote}\insertfootnotemark\ \insertfootnotetext\par%
+}
+
+% Section transition slides
+\setbeamertemplate{section page}{%
+  \begin{centering}
+    \vspace*{0.24\paperheight}
+    {\usebeamerfont{section title}\usebeamercolor[fg]{section title}\insertsection\par}
+    \vspace{0.9em}
+    {\color{ArujGold}\rule{0.22\paperwidth}{1.2pt}\par}
+  \end{centering}
+}
+
+\AtBeginSection[]{
+  \setbeamercolor{background canvas}{bg=ArujSand}
+  \begin{frame}[plain,noframenumbering]
+    \sectionpage
+  \end{frame}
+  \setbeamercolor{background canvas}{bg=ArujPaper}
+}
+
+% Handy macros
+\newcommand{\source}[1]{\vspace{0.25em}{\scriptsize\color{ArujGray}Source: #1}}
+\newcommand{\tightlist}{%
+  \setlength{\itemsep}{0.35em}
+  \setlength{\parskip}{0em}
+}
+\newcommand{\highlight}[1]{\textcolor{ArujCrimson}{\textbf{#1}}}
+\newcommand{\takeaway}[1]{%
+  \begin{block}{Takeaway}
+    #1
+  \end{block}
+}
+
+% Backup slide numbering helpers
+\newcounter{framenumberbeforeappendix}
+\newcommand{\backupbegin}{%
+  \setcounter{framenumberbeforeappendix}{\value{framenumber}}%
+}
+\newcommand{\backupend}{%
+  \addtocounter{framenumber}{-\value{framenumberbeforeappendix}}%
+  \addtocounter{framenumber}{\value{framenumberbeforeappendix}}%
+}
