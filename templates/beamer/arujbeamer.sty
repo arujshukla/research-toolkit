@@ -4,6 +4,7 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage{AlegreyaSans}
 \RequirePackage{Alegreya}
+\RequirePackage{adjustbox}
 \RequirePackage{appendixnumberbeamer}
 \RequirePackage{booktabs}
 \RequirePackage{etoolbox}
@@ -95,6 +96,8 @@
 }
 
 % Handy macros
+\newlength{\ArujFrameTableHeight}
+\setlength{\ArujFrameTableHeight}{\dimexpr\textheight-3\baselineskip\relax}
 \newcommand{\source}[1]{\vspace{0.25em}{\scriptsize\color{ArujGray}Source: #1}}
 \newcommand{\tightlist}{%
   \setlength{\itemsep}{0.35em}
@@ -105,6 +108,12 @@
   \begin{block}{Takeaway}
     #1
   \end{block}
+}
+\newenvironment{fittable}{%
+  \centering
+  \begin{adjustbox}{max width=\textwidth,max totalheight=\ArujFrameTableHeight,keepaspectratio}
+}{%
+  \end{adjustbox}
 }
 
 % Backup slide numbering helpers

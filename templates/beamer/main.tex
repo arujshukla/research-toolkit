@@ -48,16 +48,18 @@
 
 \begin{frame}{Example Table}
   \begin{table}
-    \centering
-    \begin{tabular}{lcc}
-      \toprule
-      Outcome & Control & Treatment \\
-      \midrule
-      Mean & 0.42 & 0.57 \\
-      Std. Dev. & 0.18 & 0.21 \\
-      Observations & 1{,}240 & 1{,}255 \\
-      \bottomrule
-    \end{tabular}
+    \caption{Example Regression-Style Table}
+    \begin{fittable}
+      \begin{tabular}{lcc}
+        \toprule
+        Outcome & Control & Treatment \\
+        \midrule
+        Mean & 0.42 & 0.57 \\
+        Std. Dev. & 0.18 & 0.21 \\
+        Observations & 1{,}240 & 1{,}255 \\
+        \bottomrule
+      \end{tabular}
+    \end{fittable}
   \end{table}
 
   \source{Add paper or dataset citation here.}
